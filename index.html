@@ -15,14 +15,14 @@
             display: flex;
             height: 100vh;
             font-family: 'Georgia', serif;
-            background-color: #f5f5dc; /* Бежевый фон */
-            color: #3e2f1c; /* Тёмно-коричневый текст */
+            background-color: #f5f5dc;
+            color: #3e2f1c;
         }
 
         #sidebar {
             width: 25%;
-            background-color: #e3d5b5; /* Светло-коричневый фон */
-            border-right: 2px solid #8b5e3c; /* Разделитель */
+            background-color: #e3d5b5;
+            border-right: 2px solid #8b5e3c;
             overflow-y: auto;
             padding: 20px;
         }
@@ -36,7 +36,7 @@
         #sidebar button {
             display: block;
             width: 100%;
-            background-color: #8b5e3c; /* Коричневый фон */
+            background-color: #8b5e3c;
             color: white;
             border: none;
             padding: 10px;
@@ -48,7 +48,7 @@
         }
 
         #sidebar button:hover {
-            background-color: #a07550; /* Более светлый коричневый при наведении */
+            background-color: #a07550;
         }
 
         #content h2 {
@@ -65,7 +65,7 @@
         }
 
         #content {
-            background-color: #fff8e1; /* Светлый фон для основного текста */
+            background-color: #fff8e1;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -82,11 +82,8 @@
 </div>
 
 <script>
-    // Вставьте ваш ID файла JSON из Google Drive
-    const jsonUrl = "https://drive.google.com/uc?export=download&id=1eaDgvpPVWBpW76tbxdLoOq0FEABAJYZ_";
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const jsonUrl = "articles.json";
 
-    // Функция для загрузки JSON и формирования списка тем
     async function loadJson() {
         try {
             const response = await fetch(proxyUrl + jsonUrl);
@@ -96,12 +93,10 @@
             const sidebar = document.getElementById("sidebar");
             const content = document.getElementById("content");
 
-            // Создаём список кнопок для тем
             data.themes.forEach((theme, index) => {
                 const button = document.createElement("button");
-                button.textContent = theme.title; // Название темы
+                button.textContent = theme.title;
                 button.onclick = () => {
-                    // При клике выводим статью в основной части страницы
                     content.innerHTML = `<h2>${theme.title}</h2><p>${theme.content.replace(/\n/g, '<br>')}</p>`;
                 };
                 sidebar.appendChild(button);
@@ -111,7 +106,6 @@
         }
     }
 
-    // Запуск функции загрузки при открытии страницы
     loadJson();
 </script>
 </body>
