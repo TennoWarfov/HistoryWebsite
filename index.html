@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Исторические статьи</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            font-family: 'Georgia', serif;
+            background-color: #f5f5dc; /* Бежевый фон */
+            color: #3e2f1c; /* Тёмно-коричневый текст */
+        }
+
+        #sidebar {
+            width: 25%;
+            background-color: #e3d5b5; /* Светло-коричневый фон */
+            border-right: 2px solid #8b5e3c; /* Разделитель */
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        #content {
+            width: 75%;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        #sidebar button {
+            display: block;
+            width: 100%;
+            background-color: #8b5e3c; /* Коричневый фон */
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        #sidebar button:hover {
+            background-color: #a07550; /* Более светлый коричневый при наведении */
+        }
+
+        #content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #8b5e3c;
+            padding-bottom: 10px;
+        }
+
+        #content p {
+            line-height: 1.6;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #content {
+            background-color: #fff8e1; /* Светлый фон для основного текста */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div id="sidebar">
+    <h3>Темы статей</h3>
+</div>
+
+<div id="content">
+    <h1>Добро пожаловать!</h1>
+    <p>Выберите тему из списка слева, чтобы прочитать статью.</p>
+</div>
+
+<script>
+    // Вставьте ваш ID файла JSON из Google Drive
+    const jsonUrl = "https://drive.google.com/uc?export=download&id=1eaDgvpPVWBpW76tbxdLoOq0FEABAJYZ_";
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+
+    // Функция для загрузки JSON и формирования списка тем
+    async function loadJson() {
+        try {
+            const response = await fetch(proxyUrl + jsonUrl);
+            if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
+            const data = await response.json();
+
+            const sidebar = document.getElementById("sidebar");
+            const content = document.getElementById("content");
+
+            // Создаём список кнопок для тем
+            data.themes.forEach((theme, index) => {
+                const button = document.createElement("button");
+                button.textContent = theme.title; // Название темы
+                button.onclick = () => {
+                    // При клике выводим статью в основной части страницы
+                    content.innerHTML = `<h2>${theme.title}</h2><p>${theme.content.replace(/\n/g, '<br>')}</p>`;
+                };
+                sidebar.appendChild(button);
+            });
+        } catch (error) {
+            console.error("Ошибка загрузки JSON:", error);
+        }
+    }
+
+    // Запуск функции загрузки при открытии страницы
+    loadJson();
+</script>
+</body>
+</html>
