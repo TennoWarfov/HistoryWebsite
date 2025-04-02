@@ -4,103 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Исторические статьи</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            font-family: 'Georgia', serif;
-            background-color: #f5f1e9;
-            color: #4e3b2f;
-        }
-
-        aside {
-            width: 20%;
-            background-color: #d4c0a8;
-            padding: 20px;
-            height: 100vh;
-            overflow-y: auto;
-            border-right: 2px solid #8b6a44;
-        }
-
-        aside h2 {
-            margin-bottom: 15px;
-        }
-
-        aside ul {
-            list-style: none;
-        }
-
-        aside li {
-            margin-bottom: 10px;
-        }
-
-        aside a {
-            text-decoration: none;
-            color: #4e3b2f;
-            font-weight: bold;
-        }
-
-        aside a:hover {
-            color: #6e5035;
-        }
-
-        main {
-            width: 80%;
-            padding: 40px;
-        }
-
-        h1 {
-            color: #8b6a44;
-            margin-bottom: 20px;
-        }
-
-        p {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<aside>
-    <h2>Темы статей</h2>
-    <ul id="topics-list"></ul>
-</aside>
 
-<main>
-    <h1 id="article-title">Добро пожаловать!</h1>
-    <p id="article-content">Выберите тему из списка слева, чтобы прочитать статью.</p>
-</main>
+    <!-- Верхняя панель -->
+    <div class="topbar">
+        <div class="lang-switch">
+            <a href="#" id="ru-btn" class="active">Русский</a>
+            <a href="#" id="kz-btn">Қазақша</a>
+        </div>
+    </div>
 
-<script>
-    fetch('articles.json')
-        .then(response => response.json())
-        .then(data => {
-            const topicsList = document.getElementById('topics-list');
-            const articleTitle = document.getElementById('article-title');
-            const articleContent = document.getElementById('article-content');
+    <!-- Контейнер -->
+    <div class="container">
+        <!-- Боковая панель -->
+        <aside id="sidebar">
+            <h3>Темы статей</h3>
+            <ul></ul>
+        </aside>
 
-            // Создание списка тем
-            data.themes.forEach((theme, index) => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = "#";
-                link.textContent = theme.title;
+        <!-- Основная часть -->
+        <main id="content">
+            <h2>Добро пожаловать!</h2>
+            <p>Выберите тему из списка слева, чтобы прочитать статью.</p>
+        </main>
+    </div>
 
-                // При клике на тему меняем текст статьи
-                link.addEventListener('click', () => {
-                    articleTitle.textContent = theme.title;
-                    articleContent.textContent = theme.content;
-                });
-
-                listItem.appendChild(link);
-                topicsList.appendChild(listItem);
-            });
-        })
-        .catch(error => console.error('Ошибка загрузки JSON:', error));
-</script>
+    <script src="script.js"></script>
 </body>
 </html>

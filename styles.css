@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Georgia', serif;
+    background-color: #f5f5dc;
+    color: #3e2f1c;
+}
+
+/* Верхняя панель */
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    background-color: #f5ebdc;
+    border-bottom: 1px solid #8b5e3c;
+}
+
+/* Кнопки переключения языка */
+.lang-switch {
+    display: flex;
+    gap: 15px;
+}
+
+.lang-switch a {
+    text-decoration: none;
+    color: #5c3c1e;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.lang-switch a.active {
+    font-weight: bold;
+    color: #8b5e3c;
+}
+
+/* Контейнер */
+.container {
+    display: flex;
+    flex: 1;
+}
+
+/* Боковая панель */
+#sidebar {
+    width: 25%;
+    background-color: #f5ebdc;
+    border-right: 1px solid #8b5e3c;
+    padding: 20px;
+}
+
+#sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Список тем */
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: #5c3c1e;
+    font-size: 16px;
+    display: block;
+    transition: color 0.3s;
+}
+
+#sidebar ul li a:hover {
+    color: #8b5e3c;
+}
+
+/* Основной контент */
+#content {
+    width: 75%;
+    padding: 40px;
+    overflow-y: auto;
+    background-color: #fff8e1;
+}
+
+#content h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #8b5e3c;
+    padding-bottom: 5px;
+}
+
+#content p {
+    line-height: 1.6;
+    font-size: 16px;
+}
